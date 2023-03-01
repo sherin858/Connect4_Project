@@ -19,8 +19,11 @@ namespace Client_Side
         }
         public string RoomChoice { get; set; }
         public string PlayerColor { get; set; }
-
-
+        
+        public void SetAvailableRooms(string roomId)
+        {
+            listBox1.Items.Add(roomId);
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             

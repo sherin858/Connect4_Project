@@ -38,6 +38,7 @@ namespace server
             while (true)
             {
                 Msg = await br.ReadLineAsync();
+                ReadMsg?.Invoke(this, e);
             }
            
         }

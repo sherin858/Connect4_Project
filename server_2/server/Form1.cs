@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -41,22 +42,28 @@ namespace server
         }
         public void ReadInfo(object sender, EventArgs e)
         {
-            if (((Client)sender).Msg == "Name")
+            string Msg = ((Client)sender).Msg;
+            if (Msg == "Name")
             {
                 clients.Add((Client)sender);
                 listBox1.Items.Add(((Client)sender).Name + " " + ((Client)sender).TClient.Client.RemoteEndPoint.ToString());
             }
 
             //Creates new room by getting the board size
-            else if (((Client)sender).Msg == "6*7" || ((Client)sender).Msg == "8*12")
+            else if (Msg == "6*7" || Msg == "8*12")
             {
                 MessageBox.Show("Test");
                 Room NewRoom = new Room((Client)sender);
                 NewRoom.ID = availableRooms.Count + 1;
                 availableRooms.Add(NewRoom);
-                availableRooms[availableRooms.Count - 1].BoardSize = ((Client)sender).Msg;
-                ((Client)sender).bw.WriteLine(NewRoom.ID.ToString());
-                CreateRoom = true;
+                //availableRooms[availableRooms.Count - 1].BoardSize = ((Client)sender).Msg;
+                //((Client)sender).bw.WriteLine(NewRoom.ID.ToString());
+                //CreateRoom = true;
+                ///foreach(Room room in availableRooms)
+                //{
+                  //  ((Client)sender).bw.WriteLine(room.ID.ToString());
+                    
+                //}
             }
 
             //the second player Joins
@@ -78,11 +85,24 @@ namespace server
                 TcpClient tcpClient = await tcpListener.AcceptTcpClientAsync();
                 Client NewClient = new Client(tcpClient);
                 NewClient.Msg = "Name";
-                foreach(Client cl in clients)
-                {
-                    cl.bw.WriteLine(cl.Name);
-                };
                 NewClient.ReadMsg += ReadInfo;
+                if (availableRooms.Count > 0)
+                {
+                    foreach (Room room in availableRooms)
+                    {
+                        NewClient.bw.WriteLine(room.ID.ToString());
+                        NewClient.bw.Flush();
+
+                    }
+                    NewClient.bw.WriteLine("Rooms End");
+                    NewClient.bw.Flush();
+                }
+                else
+                {
+                    NewClient.bw.WriteLine("Rooms Empty");
+                    NewClient.bw.Flush();
+                }
+                
             }
         }
     }
