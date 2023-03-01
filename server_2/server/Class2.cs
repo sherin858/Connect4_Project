@@ -12,11 +12,14 @@ namespace server
         Client player1;
         Client player2;
         List<Client> viewers;
+        String boardsize;
 
         public Room(Client roomOwner)
         {
             player1= new Client(roomOwner);
         }
+        public int ID { set;get;}
+        public string BoardSize { set; get;}
 
     }
 }

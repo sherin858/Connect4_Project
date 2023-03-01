@@ -39,7 +39,7 @@ namespace server
             {
                 Msg = await br.ReadLineAsync();
             }
-
+           
         }
         public string Name { get; set; }
         public string Msg { get; set; }

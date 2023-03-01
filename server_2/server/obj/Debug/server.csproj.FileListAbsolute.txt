@@ -20,3 +20,14 @@ C:\Users\Sherin\Desktop\Connect4_Project\server_2\server\obj\Debug\server.csproj
 C:\Users\Sherin\Desktop\Connect4_Project\server_2\server\obj\Debug\server.csproj.CoreCompileInputs.cache
 C:\Users\Sherin\Desktop\Connect4_Project\server_2\server\obj\Debug\server.exe
 C:\Users\Sherin\Desktop\Connect4_Project\server_2\server\obj\Debug\server.pdb
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\bin\Debug\server.exe.config
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\bin\Debug\server.exe
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\bin\Debug\server.pdb
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\obj\Debug\server.csproj.AssemblyReference.cache
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\obj\Debug\server.csproj.SuggestedBindingRedirects.cache
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\obj\Debug\server.Form1.resources
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\obj\Debug\server.Properties.Resources.resources
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\obj\Debug\server.csproj.GenerateResource.cache
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\obj\Debug\server.csproj.CoreCompileInputs.cache
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\obj\Debug\server.exe
+D:\Desktop\PD\14.C#\Project\Connect4_Project\server_2\server\obj\Debug\server.pdb

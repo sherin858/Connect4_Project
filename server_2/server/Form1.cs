@@ -24,6 +24,7 @@ namespace server
         int port;
         List<Client> clients;
         List<Room> availableRooms;
+        Boolean CreateRoom;
         public Form1()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace server
             availableRooms = new List<Room>();
             tcpListener.Start();
             StartConnection();
-            clients.ForEach(client => { listBox1.Items.Add(client.Name); });
+            
             
         }
         public void ReadInfo(object sender, EventArgs e)
@@ -45,9 +46,28 @@ namespace server
                 clients.Add((Client)sender);
                 listBox1.Items.Add(((Client)sender).Name + " " + ((Client)sender).TClient.Client.RemoteEndPoint.ToString());
             }
-            else if(((Client)sender).Msg == "New Room")
+
+            //Creates new room by getting the board size
+            else if (((Client)sender).Msg == "6*7" || ((Client)sender).Msg == "8*12")
             {
-               availableRooms.Add(new Room((Client)sender));
+                MessageBox.Show("Test");
+                Room NewRoom = new Room((Client)sender);
+                NewRoom.ID = availableRooms.Count + 1;
+                availableRooms.Add(NewRoom);
+                availableRooms[availableRooms.Count - 1].BoardSize = ((Client)sender).Msg;
+                ((Client)sender).bw.WriteLine(NewRoom.ID.ToString());
+                CreateRoom = true;
+            }
+
+            //the second player Joins
+            //recieves the selected room id and checks if it's a number
+            else if ( int.TryParse(((Client)sender).Msg,out int Result)==true)
+            {
+
+            }
+            else if ((((Client)sender).Msg == "Red" || ((Client)sender).Msg == "Yellow") && CreateRoom == false)
+            {
+
             }
         }
         public async void StartConnection()

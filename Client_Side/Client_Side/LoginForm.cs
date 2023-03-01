@@ -14,7 +14,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Client_Side
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
         TcpClient tcpClient;
         byte[] serverAddress;
@@ -24,7 +24,7 @@ namespace Client_Side
         StreamWriter bw;
         NetworkStream nstream;
         String LoginName;
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
             
@@ -50,24 +50,32 @@ namespace Client_Side
             bw.Flush();
             this.Hide();
             Rooms roomsDialog = new Rooms();
-            DialogResult dlgResult ;
+            DialogResult dlgResult;
             dlgResult = roomsDialog.ShowDialog();
-            if(dlgResult == DialogResult.OK)
+            if (dlgResult==DialogResult.OK)
             {
+
                 bw.WriteLine(roomsDialog.RoomChoice);
                 bw.Flush();
+                MessageBox.Show(roomsDialog.RoomChoice);
             }
-            //roomsDialouge.FormClosed += Close_All;
+
+
+
+
+            Game game = new Game();
+            game.ShowDialog();
+            game.FormClosed += Close_All;
+          
             while (true)
             {
                 MessageBox.Show(await br.ReadLineAsync());
-            }
-            
-            
+            }  
         }
         private void Close_All(object sender, EventArgs e)
         {
             this.Close();
+            
         }
     }
 }
