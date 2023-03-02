@@ -56,25 +56,37 @@ namespace server
                 Room NewRoom = new Room((Client)sender);
                 NewRoom.ID = availableRooms.Count + 1;
                 availableRooms.Add(NewRoom);
-                //availableRooms[availableRooms.Count - 1].BoardSize = ((Client)sender).Msg;
-                //((Client)sender).bw.WriteLine(NewRoom.ID.ToString());
-                //CreateRoom = true;
-                ///foreach(Room room in availableRooms)
-                //{
-                  //  ((Client)sender).bw.WriteLine(room.ID.ToString());
-                    
-                //}
+                ((Client)sender).CurrentRoom= NewRoom;
+            }
+            else if (Msg.Contains("id") == true)
+            {
+                string roomId = Msg.Split(' ')[1];
+                foreach(Room room in availableRooms)
+                {
+                    if (room.ID.ToString() == roomId)
+                    {
+                        room.Player2 = (Client)sender;
+                    }
+                }
             }
 
             //the second player Joins
             //recieves the selected room id and checks if it's a number
-            else if ( int.TryParse(((Client)sender).Msg,out int Result)==true)
-            {
+            //else if ( int.TryParse(((Client)sender).Msg,out int Result)==true)
+            //{
 
-            }
-            else if ((((Client)sender).Msg == "Red" || ((Client)sender).Msg == "Yellow") && CreateRoom == false)
+            //}
+            else if (Msg == "Red" || Msg == "Yellow")
             {
-
+                foreach (Room room in availableRooms)
+                {
+                    if (room.Player2 == (Client)sender)
+                    {
+                        room.Player2_Color = Msg;
+                        room.Player1_Color = Msg=="Yellow"?"Yellow":Msg;
+                        ((Client)sender).CurrentRoom= room;
+                    }
+                }
             }
         }
         public async void StartConnection()

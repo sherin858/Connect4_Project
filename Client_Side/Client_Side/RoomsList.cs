@@ -27,7 +27,7 @@ namespace Client_Side
         private void button2_Click(object sender, EventArgs e)
         {
             
-            RoomChoice= listBox1.SelectedItem.ToString();
+            RoomChoice= "id " + listBox1.SelectedItem.ToString() ;
             JoiningDialog joiningDialog = new JoiningDialog();
             DialogResult dlgResult;
             dlgResult = joiningDialog.ShowDialog();
@@ -45,7 +45,6 @@ namespace Client_Side
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //RoomChoice = "New Room";
             BoardSize BoardSizeDialog= new BoardSize();
             DialogResult dlgResult;
             dlgResult = BoardSizeDialog.ShowDialog();

@@ -46,6 +46,8 @@ namespace server
         public string Msg { get; set; }
         public StreamWriter bw { set; get; }
         public TcpClient TClient { get; set; }
+
+        public Room CurrentRoom { set; get; }
     }
 }   
 
