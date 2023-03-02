@@ -59,7 +59,6 @@ namespace Client_Side
             {
                 
                 roomsMsg = await br.ReadLineAsync();
-                MessageBox.Show(roomsMsg);
                 if (roomsMsg == "Rooms End" || roomsMsg == "Rooms Empty") {break;}
                 availableRoomsId.Add(roomsMsg);
                 roomsDialog.SetAvailableRooms(roomsMsg);
@@ -69,16 +68,10 @@ namespace Client_Side
             {
                 bw.WriteLine(roomsDialog.RoomChoice);
                 bw.Flush();
-                MessageBox.Show(roomsDialog.RoomChoice);
             }
             Game game = new Game();
             game.ShowDialog();
             game.FormClosed += Close_All;
-          
-            while (true)
-            {
-                MessageBox.Show(await br.ReadLineAsync());
-            }  
         }
         private void Close_All(object sender, EventArgs e)
         {

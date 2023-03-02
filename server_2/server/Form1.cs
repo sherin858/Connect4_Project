@@ -52,7 +52,6 @@ namespace server
             //Creates new room by getting the board size
             else if (Msg == "6*7" || Msg == "8*12")
             {
-                MessageBox.Show("Test");
                 Room NewRoom = new Room((Client)sender);
                 NewRoom.ID = availableRooms.Count + 1;
                 availableRooms.Add(NewRoom);
