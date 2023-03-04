@@ -69,12 +69,6 @@ namespace server
                 }
             }
 
-            //the second player Joins
-            //recieves the selected room id and checks if it's a number
-            //else if ( int.TryParse(((Client)sender).Msg,out int Result)==true)
-            //{
-
-            //}
             else if (Msg == "Red" || Msg == "Yellow")
             {
                 foreach (Room room in availableRooms)
@@ -82,8 +76,27 @@ namespace server
                     if (room.Player2 == (Client)sender)
                     {
                         room.Player2_Color = Msg;
-                        room.Player1_Color = Msg=="Yellow"?"Yellow":Msg;
+                        room.Player1_Color = Msg=="Yellow"?"Red":Msg;
                         ((Client)sender).CurrentRoom= room;
+                    }
+                }
+            }
+
+            else if (int.TryParse(((Client)sender).Msg, out int ColNumber) == true)
+            {
+                foreach (Room room in availableRooms)
+                {
+                    if (room.Player1 == (Client)sender)
+                    {
+                        room.FirstPlayerColumns.Add(ColNumber);
+                        room.Player2.bw.WriteLine(ColNumber);
+                        room.Player2.bw.Flush();
+                    }
+                    else
+                    {
+                        room.SecondPlayerColumns.Add(ColNumber);
+                        room.Player1.bw.WriteLine(ColNumber);
+                        room.Player1.bw.Flush();
                     }
                 }
             }

@@ -11,11 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
+using static Client_Side.Game;
 
 namespace Client_Side
 {
+    
     public partial class LoginForm : Form
     {
+        
         TcpClient tcpClient;
         byte[] serverAddress;
         IPAddress ip;
@@ -55,14 +58,18 @@ namespace Client_Side
             string roomsMsg;
             DialogResult dlgResult;
             //dlgResult = roomsDialog.ShowDialog();
+            
             while (true)
             {
-                
                 roomsMsg = await br.ReadLineAsync();
                 if (roomsMsg == "Rooms End" || roomsMsg == "Rooms Empty") {break;}
                 availableRoomsId.Add(roomsMsg);
                 roomsDialog.SetAvailableRooms(roomsMsg);
-            }
+                //else if (int.TryParse(roomsMsg, out int ColNumber) == true)
+                //{
+
+                //}
+                }
             dlgResult = roomsDialog.ShowDialog();
             if (dlgResult==DialogResult.OK)
             {
@@ -70,13 +77,23 @@ namespace Client_Side
                 bw.Flush();
             }
             Game game = new Game();
+            game.ColumnChanged += SendLastMove;
             game.ShowDialog();
-            game.FormClosed += Close_All;
+            //game.FormClosing += Close_All;
+            
+            
         }
         private void Close_All(object sender, EventArgs e)
         {
-            this.Close();
-            
+            this.Close();   
         }
+        public void SendLastMove(object sender,EventData e)
+        {
+            MessageBox.Show("test");
+            bw.WriteLine(e.columnPlayed.ToString());
+            bw.Flush();
+        }
+
+        
     }
 }
