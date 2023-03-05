@@ -78,3 +78,18 @@ D:\iti 9 months scholarship program\C#\Connect4_Project\Client_Side2\Client_Side
 D:\iti 9 months scholarship program\C#\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
 D:\iti 9 months scholarship program\C#\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.exe
 D:\iti 9 months scholarship program\C#\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.pdb
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.exe.config
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.exe
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.pdb
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.AssemblyReference.cache
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.SuggestedBindingRedirects.cache
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.JoiningDialog.resources
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Game.resources
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.LoginForm.resources
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Rooms.resources
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.BoardSize.resources
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Properties.Resources.resources
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.GenerateResource.cache
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.exe
+D:\iti\c sharp\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.pdb

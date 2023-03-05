@@ -16,6 +16,7 @@ namespace Client_Side
         public Rooms()
         {
             InitializeComponent();
+
         }
         public string RoomChoice { get; set; }
         public string PlayerColor { get; set; }
@@ -24,6 +25,7 @@ namespace Client_Side
         {
             listBox1.Items.Add(roomId);
         }
+        //join
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -43,6 +45,7 @@ namespace Client_Side
 
         }
 
+        // create
         private void button1_Click(object sender, EventArgs e)
         {
             BoardSize BoardSizeDialog = new BoardSize();

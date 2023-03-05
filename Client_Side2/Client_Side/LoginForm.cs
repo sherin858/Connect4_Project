@@ -11,11 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
+using static Client_Side.Game;
 
 namespace Client_Side
 {
+
     public partial class LoginForm : Form
     {
+
         TcpClient tcpClient;
         byte[] serverAddress;
         IPAddress ip;
@@ -25,6 +28,7 @@ namespace Client_Side
         NetworkStream nstream;
         string LoginName;
         List<string> availableRoomsId;
+        List<string> availableRoomsBoardSize;
         public LoginForm()
         {
             InitializeComponent();
@@ -41,6 +45,7 @@ namespace Client_Side
             nstream = tcpClient.GetStream();
             br = new StreamReader(nstream);
             availableRoomsId = new List<string>();
+            availableRoomsBoardSize = new List<string>();
             if (textBox1.Text == "")
             {
                 LoginName = "Anonymous Player";
@@ -55,13 +60,19 @@ namespace Client_Side
             string roomsMsg;
             DialogResult dlgResult;
             //dlgResult = roomsDialog.ShowDialog();
+
             while (true)
             {
-
                 roomsMsg = await br.ReadLineAsync();
                 if (roomsMsg == "Rooms End" || roomsMsg == "Rooms Empty") { break; }
-                availableRoomsId.Add(roomsMsg);
-                roomsDialog.SetAvailableRooms(roomsMsg);
+
+                availableRoomsId.Add(roomsMsg.Split(' ')[0]);
+                availableRoomsBoardSize.Add(roomsMsg.Split(' ')[1]);
+                roomsDialog.SetAvailableRooms(roomsMsg.Split(' ')[0]);
+                //else if (int.TryParse(roomsMsg, out int ColNumber) == true)
+                //{
+
+                //}
             }
             dlgResult = roomsDialog.ShowDialog();
             if (dlgResult == DialogResult.OK)
@@ -69,14 +80,45 @@ namespace Client_Side
                 bw.WriteLine(roomsDialog.RoomChoice);
                 bw.Flush();
             }
+            // get col,row
             Game game = new Game();
+            if (roomsDialog.RoomChoice == "6*7" || roomsDialog.RoomChoice == "8*12")
+            {
+                string[] col_row = roomsDialog.RoomChoice.Split('*');
+                game.row = Int32.Parse(col_row[0]);
+                game.col = Int32.Parse(col_row[1]);
+                game.initializeColRow();
+            }
+            if (roomsDialog.RoomChoice.Contains("id"))
+            {
+                MessageBox.Show(int.Parse(roomsDialog.RoomChoice.Split(' ')[1]).ToString());
+                string roomSize = availableRoomsBoardSize[int.Parse(roomsDialog.RoomChoice.Split(' ')[1])- 1];//Split(' ')[0]
+                game.row = Int32.Parse(roomSize.Split('*')[0]);
+                game.col = Int32.Parse(roomSize.Split('*')[1]);
+                game.initializeColRow();
+                if (roomsDialog.PlayerColor == "Yellow")
+                {
+                    game.playerTwo = Color.Yellow;
+                    game.initializeColor();
+                }
+            }
+            //game.ColumnChanged += SendLastMove;
             game.ShowDialog();
-            game.FormClosed += Close_All;
+            //game.FormClosing += Close_All;
+
+
         }
         private void Close_All(object sender, EventArgs e)
         {
             this.Close();
-
         }
+        //public void SendLastMove(object sender, EventData e)
+        //{
+        //    MessageBox.Show("test");
+        //    bw.WriteLine(e.columnPlayed.ToString());
+        //    bw.Flush();
+        //}
+
+
     }
 }

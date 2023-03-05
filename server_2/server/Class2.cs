@@ -26,7 +26,9 @@ namespace server
         public int ID { set;get;}
         public string BoardSize { set; get;}
         public Client Player2 { set; get; }
-        public Client Player1 { set; get; }
+        public Client Player1 { 
+            set { player1 = value; }
+            get { return player1; } }
         public String Player1_Color { set; get; }
         public String Player2_Color { set; get;}
       

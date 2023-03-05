@@ -17,13 +17,10 @@ namespace Client_Side
 {
     public partial class Game : Form
     {
-        
-        int playedColumn;
+
+        int ClickedColumn;
         public event Action<object, EventData> ColumnChanged;
-        //public delegate void ColumnChangedHandler(object source, EventData e);
-        //public event ColumnChangedHandler ColumnChanged;
-
-
+        
         //draw rectangle
         Color RectColor;
         Rectangle Table;
@@ -32,8 +29,8 @@ namespace Client_Side
         int TableYSpace = 70;
         int startX = 50;
         int startY = 50;
-        int row = 7;
-        int col = 8;
+        //int row = 7;
+        //int col = 8;
         Brush RctBrush;
         // draw circle
         Color CircleColor;
@@ -44,45 +41,67 @@ namespace Client_Side
         Brush playerOneBrush;
         Brush playerTwoBrush;
         // lists
-        List<Color>[] disk = new List<Color>[8];
+        List<Color>[] disk;
         Boolean playerOne = true;
         Color[,] whiteDisks;
-
+        
         public Game()
         {
             InitializeComponent();
-            
-            whiteDisks = new Color[row, col];
+            //this.col = col;
+            //this.row = row;
+            //whiteDisks = new Color[row, col];
+            //disk = new List<Color>[col];
             // draw rectangle
             RectColor = Color.Blue;
             RctBrush = new SolidBrush(RectColor);
             TableUPoint = new Point(startX, startY);
-            Table = new Rectangle(TableUPoint, new Size(col * TableXSpace, row * TableYSpace));
+            //Table = new Rectangle(TableUPoint, new Size(col * TableXSpace, row * TableYSpace));
             // draw circle
             CircleColor = Color.White;
             CirclePen = new Pen(CircleColor, 5);
             CircleBrush = new SolidBrush(CircleColor);
-            playerOneColor = Color.Red;
-            playerTwoColor = Color.Yellow;
-            playerOneBrush = new SolidBrush(playerOneColor);
-            playerTwoBrush = new SolidBrush(playerTwoColor);
+           // playerOneColor = Color.Red;
+            //playerTwoColor = Color.Yellow;
+            //playerOneBrush = new SolidBrush(playerOneColor);
+           
+
+            //for (int i = 0; i < col; i++)
+            //{
+            //    disk[i] = new List<Color>();
+            //}
+
+        }
+        public void initializeColRow()
+        {
+            whiteDisks = new Color[row, col];
+            disk = new List<Color>[col];
+            Table = new Rectangle(TableUPoint, new Size(col * TableXSpace, row * TableYSpace));
             for (int i = 0; i < col; i++)
             {
                 disk[i] = new List<Color>();
             }
-
+        }
+        public void initializeColor()
+        {
+            playerTwoColor = playerTwo;
+            playerOneColor = playerTwoColor == Color.Yellow ? Color.Red : Color.Yellow;
+            playerOneBrush = new SolidBrush(playerOneColor);
+            playerTwoBrush = new SolidBrush(playerTwoColor);
         }
 
         private void Game_MouseClick(object sender, MouseEventArgs e)
         {
             
-            GenerateColumn(MousePosition);
+            
 
             // to know which column will be fulled with a disk
             for (int i = 0; i < col; i++)
             {
                 if (e.X > (startX + i * TableXSpace) && e.X < (startX + (i + 1) * TableXSpace))
                 {
+                    GenerateColumn(MousePosition);
+
                     Graphics g = this.CreateGraphics();
                     if (disk[i].Count < row && playerOne == true)
                     {
@@ -120,11 +139,12 @@ namespace Client_Side
         public void DrawCircle()
         {
             Graphics g = this.CreateGraphics();
-
+            
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
+                    
                     g.FillEllipse(CircleBrush, startX + j * TableXSpace + 5, startY + TableYSpace * i + 5, 50, 50);
                     whiteDisks[i, j] = Color.White;
 
@@ -188,7 +208,7 @@ namespace Client_Side
 
                 // check for vertical
 
-                for (int j = 0; j < col - 1; j++)// eight column
+                for (int j = 0; j < col ; j++)// eight column
                 {
                     for (int i = row - 1; i > 0; i--)// seven row , const column, varried row
                     {
@@ -304,12 +324,8 @@ namespace Client_Side
             {
                 for (int j = 0; j < col; j++)
                 {
-
                     whiteDisks[i, j] = Color.White;
-
-
                 }
-
             }
             // free all lists from the colored disks
             for (int j = 0; j < col; j++)
@@ -319,43 +335,40 @@ namespace Client_Side
             }
         }
 
-        public int GenerateColumn(Point point)
+        public void GenerateColumn(Point point)
         {
-            point = new Point(point.X, point.Y);
-            if (point.X > Table.X && point.X < Table.Width + Table.X && point.Y > Table.Y && point.Y < Table.Height + Table.X)
+
+            int ColWidth = Table.Width/ col;
+            int colsPointsMin = 0;
+            int colsPointsMax = ColWidth;
+
+            for (int i = 0; i < col; i++)
             {
-                int ColWidth = Table.Width / col;
-                int colsPointsMin = 0;
-                int colsPointsMax = ColWidth;
-                for (int i = 0; i < col; i++)
+                if (colsPointsMin <= point.X && point.X < colsPointsMax)
                 {
-                    if (colsPointsMin <= point.X && point.X < colsPointsMax)
-                    {
-                        ColumnPlayed = i + 1;
-                        colsPointsMin = colsPointsMin + ColWidth;
-                        colsPointsMax = colsPointsMax + ColWidth;
-                    }
+                    //ClickedColumn = i + 1;
+                    ColumnUpdated(ClickedColumn);
                 }
+                colsPointsMin = colsPointsMin + ColWidth;
+                colsPointsMax = colsPointsMax + ColWidth;
             }
-            return ColumnPlayed;
+             
         }
 
-        public int ColumnPlayed {
-            set
-            {
-                playedColumn = value;
-                OnColumnChanged(new EventData { columnPlayed=playedColumn});
-            }
 
-            get {return playedColumn;}
-        }
         protected virtual void OnColumnChanged(EventData e)
         {
             ColumnChanged?.Invoke(this, e);
         }
-      
 
+        public void ColumnUpdated(int column)
+        {
+            OnColumnChanged(new EventData { columnPlayed = column });
+        }
 
+        public int row { get; set; }
+        public int col { get; set; }
+        public Color playerTwo { get; set; } = Color.Yellow;
     }
     
 }

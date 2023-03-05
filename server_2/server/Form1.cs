@@ -39,6 +39,8 @@ namespace server
             StartConnection();
             
             
+            
+            
         }
         public void ReadInfo(object sender, EventArgs e)
         {
@@ -55,12 +57,13 @@ namespace server
                 Room NewRoom = new Room((Client)sender);
                 NewRoom.ID = availableRooms.Count + 1;
                 availableRooms.Add(NewRoom);
-                ((Client)sender).CurrentRoom= NewRoom;
+                NewRoom.BoardSize = Msg;
+                ((Client)sender).CurrentRoom = NewRoom;
             }
             else if (Msg.Contains("id") == true)
             {
                 string roomId = Msg.Split(' ')[1];
-                foreach(Room room in availableRooms)
+                foreach (Room room in availableRooms)
                 {
                     if (room.ID.ToString() == roomId)
                     {
@@ -76,31 +79,54 @@ namespace server
                     if (room.Player2 == (Client)sender)
                     {
                         room.Player2_Color = Msg;
-                        room.Player1_Color = Msg=="Yellow"?"Red":Msg;
-                        ((Client)sender).CurrentRoom= room;
+                        room.Player1_Color = Msg == "Yellow" ? "Red" : Msg;
+                        ((Client)sender).CurrentRoom = room;
                     }
                 }
             }
 
-            else if (int.TryParse(((Client)sender).Msg, out int ColNumber) == true)
+            else if (int.Parse(Msg) >= 1 && int.Parse(Msg) <= 12)
             {
+
                 foreach (Room room in availableRooms)
                 {
-                    if (room.Player1 == (Client)sender)
+
+                    if (room.Player1 == ((Client)sender))
                     {
-                        room.FirstPlayerColumns.Add(ColNumber);
-                        room.Player2.bw.WriteLine(ColNumber);
-                        room.Player2.bw.Flush();
+                        MessageBox.Show("delivered");
+                        //room.FirstPlayerColumns.Add(ColNumber);
+                        //room.Player2.bw.WriteLine(ColNumber);
+                        //room.Player2.bw.Flush();
                     }
                     else
                     {
-                        room.SecondPlayerColumns.Add(ColNumber);
-                        room.Player1.bw.WriteLine(ColNumber);
-                        room.Player1.bw.Flush();
+                        //room.SecondPlayerColumns.Add(ColNumber);
+                        //room.Player1.bw.WriteLine(ColNumber);
+                        //room.Player1.bw.Flush();
                     }
                 }
             }
+
+
+
+            else if (Msg == "GameEnd")
+            {
+                foreach (Room room in availableRooms)
+                {
+                    DateTime dateTime = DateTime.Now;
+                    if (room.Player1 == ((Client)sender))
+                    {
+                        File.WriteAllText("D:\\Desktop\\"+dateTime+".txt", "First Player: "+room.Player1.Name+"is Winner, Second Player: "+ room.Player2.Name+" ,Date: "+dateTime);
+                    }
+                    else
+                    {
+                        File.WriteAllText("D:\\Desktop\\" + dateTime + ".txt", "First Player: " + room.Player2.Name + "is Winner, Second Player: " + room.Player1.Name + " ,Date: " + dateTime);
+                    }
+                }
+            }
+
         }
+
         public async void StartConnection()
         {
 
@@ -108,13 +134,18 @@ namespace server
             {
                 TcpClient tcpClient = await tcpListener.AcceptTcpClientAsync();
                 Client NewClient = new Client(tcpClient);
-                NewClient.Msg = "Name";
+                
+                
+              NewClient.Msg = "Name";
                 NewClient.ReadMsg += ReadInfo;
                 if (availableRooms.Count > 0)
                 {
                     foreach (Room room in availableRooms)
                     {
-                        NewClient.bw.WriteLine(room.ID.ToString());
+                        //NewClient.bw.WriteLine(room.ID.ToString()+" "+ room.BoardSize.ToString());
+
+                        NewClient.bw.WriteLine($"{room.ID} {room.BoardSize}");
+                        //NewClient.bw.WriteLine(room.ID.ToString());
                         NewClient.bw.Flush();
 
                     }
