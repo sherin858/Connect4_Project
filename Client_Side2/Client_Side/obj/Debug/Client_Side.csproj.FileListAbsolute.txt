@@ -138,3 +138,99 @@ D:\iti 9 months scholarship program\C#\Connect4_Project2\Connect4_Project\Client
 D:\iti 9 months scholarship program\C#\Connect4_Project2\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
 D:\iti 9 months scholarship program\C#\Connect4_Project2\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.exe
 D:\iti 9 months scholarship program\C#\Connect4_Project2\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.pdb
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.exe.config
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.exe
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.pdb
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.AssemblyReference.cache
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.SuggestedBindingRedirects.cache
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.JoiningDialog.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Game.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.LoginForm.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Rooms.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.BoardSize.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Properties.Resources.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.GenerateResource.cache
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.exe
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.pdb
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.PlayAgain.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\bin\Debug\Client_Side.exe.config
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\bin\Debug\Client_Side.exe
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\bin\Debug\Client_Side.pdb
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.csproj.AssemblyReference.cache
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.csproj.SuggestedBindingRedirects.cache
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.PlayAgain.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.JoiningDialog.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.Game.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.LoginForm.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.Rooms.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.BoardSize.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.Properties.Resources.resources
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.csproj.GenerateResource.cache
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.exe
+D:\Desktop\PD\14.C#\C#_Final Project\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.pdb
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.exe.config
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.exe
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.pdb
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.AssemblyReference.cache
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.SuggestedBindingRedirects.cache
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.PlayAgain.resources
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.JoiningDialog.resources
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Game.resources
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.LoginForm.resources
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Rooms.resources
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.BoardSize.resources
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Properties.Resources.resources
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.GenerateResource.cache
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.exe
+D:\ITI\C#\2a5er haga waslaly\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.pdb
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\bin\Debug\Client_Side.exe.config
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\bin\Debug\Client_Side.exe
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\bin\Debug\Client_Side.pdb
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.csproj.AssemblyReference.cache
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.csproj.SuggestedBindingRedirects.cache
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.PlayAgain.resources
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.JoiningDialog.resources
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.Game.resources
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.LoginForm.resources
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.Rooms.resources
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.BoardSize.resources
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.Properties.Resources.resources
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.csproj.GenerateResource.cache
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.exe
+D:\Desktop\Connect4_Project\Client_Side1\Client_Side\obj\Debug\Client_Side.pdb
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\bin\Debug\Client_Side.exe.config
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\bin\Debug\Client_Side.exe
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\bin\Debug\Client_Side.pdb
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.csproj.AssemblyReference.cache
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.csproj.SuggestedBindingRedirects.cache
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.PlayAgain.resources
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.JoiningDialog.resources
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.Game.resources
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.LoginForm.resources
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.Rooms.resources
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.BoardSize.resources
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.Properties.Resources.resources
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.csproj.GenerateResource.cache
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.exe
+D:\Desktop\Connect4_Project\Client_Side1 - Copy\Client_Side\obj\Debug\Client_Side.pdb
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.exe.config
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.exe
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\bin\Debug\Client_Side.pdb
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.AssemblyReference.cache
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.SuggestedBindingRedirects.cache
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.PlayAgain.resources
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.JoiningDialog.resources
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Game.resources
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.LoginForm.resources
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Rooms.resources
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.BoardSize.resources
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.Properties.Resources.resources
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.GenerateResource.cache
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.csproj.CoreCompileInputs.cache
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.exe
+D:\Desktop\Connect4_Project\Client_Side2\Client_Side\obj\Debug\Client_Side.pdb

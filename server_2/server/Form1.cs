@@ -25,7 +25,7 @@ namespace server
         int port;
         List<Client> clients;
         List<Room> availableRooms;
-        Boolean CreateRoom;
+        
         public Form1()
         {
             InitializeComponent();
@@ -37,14 +37,12 @@ namespace server
             availableRooms = new List<Room>();
             tcpListener.Start();
             StartConnection();
-            
-            
-            
-            
+               
         }
         public void ReadInfo(object sender, EventArgs e)
         {
             string Msg = ((Client)sender).Msg;
+
             if (Msg == "Name")
             {
                 clients.Add((Client)sender);
@@ -64,7 +62,7 @@ namespace server
             {
                 string roomId = Msg.Split(' ')[1];
                 foreach (Room room in availableRooms)
-                {
+                {     
                     if (room.ID.ToString() == roomId)
                     {
                         room.Player2 = (Client)sender;
@@ -87,6 +85,63 @@ namespace server
                 }
             }
 
+            else if (Msg == "GameEnd")
+            {
+                foreach (Room room in availableRooms)
+                {
+                    DateTime dateTime = DateTime.Now;
+                    if (room.Player1.Nstream == ((Client)sender).Nstream)
+                    {
+                        File.WriteAllText("D:\\Desktop\\LastGame.txt", "First Player: " + room.Player1.Name + ", Second Player: " + room.Player2.Name + " ,Date: " + dateTime);
+                    }
+                    else
+                    {
+                        File.WriteAllText("D:\\Desktop\\LastGame.txt", "First Player: " + room.Player2.Name + ", Second Player: " + room.Player1.Name + " ,Date: " + dateTime);
+                    }
+                }
+            }
+
+            else if (Msg == "Red Player Won" || Msg == "Yellow Player Won")
+            {
+                foreach (Room room in availableRooms)
+                {
+                    if (room.Player1.Nstream == ((Client)sender).Nstream)
+                    {
+                        if (Msg.Contains(room.Player1_Color))
+                        {
+                            room.Player1.bw.WriteLine("Winner");
+                            room.Player1.bw.Flush();
+                            room.Player2.bw.WriteLine("Loser");
+                            room.Player2.bw.Flush();
+                        }
+                        else
+                        {
+                            room.Player2.bw.WriteLine("Winner");
+                            room.Player2.bw.Flush();
+                            room.Player1.bw.WriteLine("Loser");
+                            room.Player1.bw.Flush();
+                        }
+                    }
+                    else if (room.Player2.Nstream == ((Client)sender).Nstream)
+                    {
+                        if (Msg.Contains(room.Player1_Color))
+                        {
+                            room.Player1.bw.WriteLine("Winner");
+                            room.Player1.bw.Flush();
+                            room.Player2.bw.WriteLine("Loser");
+                            room.Player2.bw.Flush();
+                        }
+                        else
+                        {
+                            room.Player2.bw.WriteLine("Winner");
+                            room.Player2.bw.Flush();
+                            room.Player1.bw.WriteLine("Loser");
+                            room.Player1.bw.Flush();
+                        }
+                    }
+                }
+            }
+
             else if (int.Parse(Msg) >= 1 && int.Parse(Msg) <= 12)
             {
 
@@ -96,39 +151,16 @@ namespace server
                     {
                         room.Player2.bw.WriteLine(Msg);
                         room.Player2.bw.Flush();
-                        //room.FirstPlayerColumns.Add(ColNumber);
-                        //room.Player2.bw.WriteLine(ColNumber);
-                        //room.Player2.bw.Flush();
+                       
                     }
                     else if(room.Player2.Nstream == ((Client)sender).Nstream)
                     {
                         room.Player1.bw.WriteLine(Msg);
                         room.Player1.bw.Flush();
-                        //room.SecondPlayerColumns.Add(ColNumber);
-                        //room.Player1.bw.WriteLine(ColNumber);
-                        //room.Player1.bw.Flush();
+                        
                     }
                 }
             }
-
-
-
-            else if (Msg == "GameEnd")
-            {
-                foreach (Room room in availableRooms)
-                {
-                    DateTime dateTime = DateTime.Now;
-                    if (room.Player1 == ((Client)sender))
-                    {
-                        File.WriteAllText("D:\\Desktop\\"+dateTime+".txt", "First Player: "+room.Player1.Name+"is Winner, Second Player: "+ room.Player2.Name+" ,Date: "+dateTime);
-                    }
-                    else
-                    {
-                        File.WriteAllText("D:\\Desktop\\" + dateTime + ".txt", "First Player: " + room.Player2.Name + "is Winner, Second Player: " + room.Player1.Name + " ,Date: " + dateTime);
-                    }
-                }
-            }
-
         }
 
         public async void StartConnection()
@@ -146,12 +178,8 @@ namespace server
                 {
                     foreach (Room room in availableRooms)
                     {
-                        //NewClient.bw.WriteLine(room.ID.ToString()+" "+ room.BoardSize.ToString());
-
                         NewClient.bw.WriteLine($"{room.ID} {room.BoardSize}");
-                        //NewClient.bw.WriteLine(room.ID.ToString());
                         NewClient.bw.Flush();
-
                     }
                     NewClient.bw.WriteLine("Rooms End");
                     NewClient.bw.Flush();

@@ -11,7 +11,6 @@ namespace server
 {
     internal class Client
     {
-        //TcpClient tcpClient;
         public event EventHandler ReadMsg;
         StreamReader br;
         
