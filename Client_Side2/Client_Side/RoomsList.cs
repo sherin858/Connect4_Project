@@ -16,11 +16,11 @@ namespace Client_Side
         public Rooms()
         {
             InitializeComponent();
-
+            
         }
         public string RoomChoice { get; set; }
         public string PlayerColor { get; set; }
-
+        
         public void SetAvailableRooms(string roomId)
         {
             listBox1.Items.Add(roomId);
@@ -28,8 +28,8 @@ namespace Client_Side
         //join
         private void button2_Click(object sender, EventArgs e)
         {
-
-            RoomChoice = "id " + listBox1.SelectedItem.ToString();
+            
+            RoomChoice= "id " + listBox1.SelectedItem.ToString() ;
             JoiningDialog joiningDialog = new JoiningDialog();
             DialogResult dlgResult;
             dlgResult = joiningDialog.ShowDialog();
@@ -48,15 +48,15 @@ namespace Client_Side
         // create
         private void button1_Click(object sender, EventArgs e)
         {
-            BoardSize BoardSizeDialog = new BoardSize();
+            BoardSize BoardSizeDialog= new BoardSize();
             DialogResult dlgResult;
             dlgResult = BoardSizeDialog.ShowDialog();
             if (dlgResult == DialogResult.OK)
             {
-                RoomChoice = BoardSizeDialog.Board_size;
+                RoomChoice=BoardSizeDialog.Board_size;
                 BoardSizeDialog.Close();
             }
-
+            
             this.DialogResult = DialogResult.OK;
 
             //this.Close();

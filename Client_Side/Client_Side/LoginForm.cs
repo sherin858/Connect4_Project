@@ -12,13 +12,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
 using static Client_Side.Game;
+using System.Data.Common;
 
 namespace Client_Side
 {
-    
+    public delegate void Notify(string Msg);
     public partial class LoginForm : Form
     {
-        
+
         TcpClient tcpClient;
         byte[] serverAddress;
         IPAddress ip;
@@ -27,13 +28,15 @@ namespace Client_Side
         StreamWriter bw;
         NetworkStream nstream;
         string LoginName;
-        List <string> availableRoomsId;
+        List<string> availableRoomsId;
         List<string> availableRoomsBoardSize;
-        
+        public string Msg { set; get; }
+        public Notify ReadMsgg;
         public LoginForm()
         {
             InitializeComponent();
-            
+
+
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -45,14 +48,14 @@ namespace Client_Side
             tcpClient.Connect(ip, port);
             nstream = tcpClient.GetStream();
             br = new StreamReader(nstream);
-            availableRoomsId=new List<string>();
+            availableRoomsId = new List<string>();
             availableRoomsBoardSize = new List<string>();
-            if (textBox1.Text=="")
+            if (textBox1.Text == "")
             {
                 LoginName = "Anonymous Player";
             }
             else
-            {LoginName = textBox1.Text;}
+            { LoginName = textBox1.Text; }
             bw = new StreamWriter(nstream);
             bw.WriteLine(LoginName);
             bw.Flush();
@@ -61,63 +64,88 @@ namespace Client_Side
             string roomsMsg;
             DialogResult dlgResult;
             //dlgResult = roomsDialog.ShowDialog();
-            
+
             while (true)
             {
                 roomsMsg = await br.ReadLineAsync();
-                if (roomsMsg == "Rooms End" || roomsMsg == "Rooms Empty") {break;}
+                if (roomsMsg == "Rooms End" || roomsMsg == "Rooms Empty") { break; }
 
                 availableRoomsId.Add(roomsMsg.Split(' ')[0]);
                 availableRoomsBoardSize.Add(roomsMsg.Split(' ')[1]);
                 roomsDialog.SetAvailableRooms(roomsMsg.Split(' ')[0]);
-                
+
             }
             dlgResult = roomsDialog.ShowDialog();
-            if (dlgResult==DialogResult.OK)
+            if (dlgResult == DialogResult.OK)
             {
+
                 bw.WriteLine(roomsDialog.RoomChoice);
                 bw.Flush();
             }
             // get col,row
             Game game = new Game();
-            if (roomsDialog.RoomChoice== "6*7" || roomsDialog.RoomChoice == "8*12")
+            if (roomsDialog.RoomChoice == "6*7" || roomsDialog.RoomChoice == "8*12")
             {
                 string[] col_row = roomsDialog.RoomChoice.Split('*');
                 game.row = Int32.Parse(col_row[0]);
                 game.col = Int32.Parse(col_row[1]);
                 game.initializeColRow();
-                game.initializeColor();
+                //game.initializeColor();
+                game.Show();
+                roomsDialog.PlayerColor = await br.ReadLineAsync();
+                if (roomsDialog.PlayerColor == "Yellow")
+                {
+                    game.Mycolor = Color.Yellow;
+                    game.MyBrush = new SolidBrush(game.Mycolor);
+                    game.MyCompBrush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    game.Mycolor = Color.Red;
+                    game.MyBrush = new SolidBrush(game.Mycolor);
+                    game.MyCompBrush = new SolidBrush(Color.Yellow);
+                }
             }
             if (roomsDialog.RoomChoice.Contains("id"))
             {
-                string roomSize = availableRoomsBoardSize[int.Parse(roomsDialog.RoomChoice.Split(' ')[1])- 1];//Split(' ')[0]
+                string roomSize = availableRoomsBoardSize[int.Parse(roomsDialog.RoomChoice.Split(' ')[1]) - 1];//Split(' ')[0]
                 game.row = Int32.Parse(roomSize.Split('*')[0]);
                 game.col = Int32.Parse(roomSize.Split('*')[1]);
                 game.initializeColRow();
                 if (roomsDialog.PlayerColor == "Yellow")
                 {
-                    game.playerTwo = Color.Yellow;
-                    game.initializeColor();
+                    game.Mycolor = Color.Yellow;
+                    game.MyBrush = new SolidBrush(game.Mycolor);
+                    game.MyCompBrush = new SolidBrush(Color.Red);
+                    bw.WriteLine(roomsDialog.PlayerColor);
+                    bw.Flush();
                 }
-                else if (roomsDialog.PlayerColor == "Red")
+                else
                 {
-                    game.playerTwo = Color.Red;
-                    game.initializeColor();
+                    game.Mycolor = Color.Red;
+                    game.MyBrush = new SolidBrush(game.Mycolor);
+                    game.MyCompBrush = new SolidBrush(Color.Yellow);
+                    bw.WriteLine(roomsDialog.PlayerColor);
+                    bw.Flush();
                 }
+                game.Show();
             }
             game.ColumnChanged += SendLastMove;
-            game.ShowDialog();
-            //game.FormClosing += Close_All;
+            this.ReadMsgg += new Notify(game.ReadInfo);
+            while (true)
+            {
 
-
+                Msg = await br.ReadLineAsync();
+                game.Dimmed = false;
+                ReadMsgg(Msg);
+            }
         }
         private void Close_All(object sender, EventArgs e)
         {
-            this.Close();   
+            this.Close();
         }
-        public void SendLastMove(object sender,EventData e)
+        public void SendLastMove(object sender, EventData e)
         {
-            MessageBox.Show(e.columnPlayed.ToString());
             bw.WriteLine(e.columnPlayed.ToString());
             bw.Flush();
         }

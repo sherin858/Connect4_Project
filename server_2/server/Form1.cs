@@ -76,11 +76,13 @@ namespace server
             {
                 foreach (Room room in availableRooms)
                 {
-                    if (room.Player2 == (Client)sender)
+                    if (room.Player2.Nstream == ((Client)sender).Nstream)
                     {
                         room.Player2_Color = Msg;
-                        room.Player1_Color = Msg == "Yellow" ? "Red" : Msg;
+                        room.Player1_Color = Msg == "Yellow" ? "Red" : "Yellow";
                         ((Client)sender).CurrentRoom = room;
+                        room.Player1.bw.WriteLine(room.Player1_Color);
+                        room.Player1.bw.Flush();
                     }
                 }
             }
@@ -90,16 +92,18 @@ namespace server
 
                 foreach (Room room in availableRooms)
                 {
-
-                    if (room.Player1 == ((Client)sender))
+                    if (room.Player1.Nstream == ((Client)sender).Nstream)
                     {
-                        MessageBox.Show("delivered");
+                        room.Player2.bw.WriteLine(Msg);
+                        room.Player2.bw.Flush();
                         //room.FirstPlayerColumns.Add(ColNumber);
                         //room.Player2.bw.WriteLine(ColNumber);
                         //room.Player2.bw.Flush();
                     }
-                    else
+                    else if(room.Player2.Nstream == ((Client)sender).Nstream)
                     {
+                        room.Player1.bw.WriteLine(Msg);
+                        room.Player1.bw.Flush();
                         //room.SecondPlayerColumns.Add(ColNumber);
                         //room.Player1.bw.WriteLine(ColNumber);
                         //room.Player1.bw.Flush();

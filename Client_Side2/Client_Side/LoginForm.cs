@@ -12,10 +12,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
 using static Client_Side.Game;
+using System.Data.Common;
 
 namespace Client_Side
 {
-
+    public delegate void Notify(string Msg);
     public partial class LoginForm : Form
     {
 
@@ -29,9 +30,12 @@ namespace Client_Side
         string LoginName;
         List<string> availableRoomsId;
         List<string> availableRoomsBoardSize;
+        public string Msg { set; get; }
+        public Notify ReadMsgg;
         public LoginForm()
         {
             InitializeComponent();
+
 
         }
 
@@ -69,14 +73,12 @@ namespace Client_Side
                 availableRoomsId.Add(roomsMsg.Split(' ')[0]);
                 availableRoomsBoardSize.Add(roomsMsg.Split(' ')[1]);
                 roomsDialog.SetAvailableRooms(roomsMsg.Split(' ')[0]);
-                //else if (int.TryParse(roomsMsg, out int ColNumber) == true)
-                //{
 
-                //}
             }
             dlgResult = roomsDialog.ShowDialog();
             if (dlgResult == DialogResult.OK)
             {
+
                 bw.WriteLine(roomsDialog.RoomChoice);
                 bw.Flush();
             }
@@ -88,36 +90,65 @@ namespace Client_Side
                 game.row = Int32.Parse(col_row[0]);
                 game.col = Int32.Parse(col_row[1]);
                 game.initializeColRow();
+                //game.initializeColor();
+                game.Show();
+                roomsDialog.PlayerColor = await br.ReadLineAsync();
+                if (roomsDialog.PlayerColor == "Yellow")
+                {
+                    game.Mycolor = Color.Yellow;
+                    game.MyBrush = new SolidBrush(game.Mycolor);
+                    game.MyCompBrush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    game.Mycolor = Color.Red;
+                    game.MyBrush = new SolidBrush(game.Mycolor);
+                    game.MyCompBrush = new SolidBrush(Color.Yellow);
+                }
             }
             if (roomsDialog.RoomChoice.Contains("id"))
             {
-                MessageBox.Show(int.Parse(roomsDialog.RoomChoice.Split(' ')[1]).ToString());
-                string roomSize = availableRoomsBoardSize[int.Parse(roomsDialog.RoomChoice.Split(' ')[1])- 1];//Split(' ')[0]
+                string roomSize = availableRoomsBoardSize[int.Parse(roomsDialog.RoomChoice.Split(' ')[1]) - 1];//Split(' ')[0]
                 game.row = Int32.Parse(roomSize.Split('*')[0]);
                 game.col = Int32.Parse(roomSize.Split('*')[1]);
                 game.initializeColRow();
                 if (roomsDialog.PlayerColor == "Yellow")
                 {
-                    game.playerTwo = Color.Yellow;
-                    game.initializeColor();
+                    game.Mycolor = Color.Yellow;
+                    game.MyBrush = new SolidBrush(game.Mycolor);
+                    game.MyCompBrush = new SolidBrush(Color.Red);
+                    bw.WriteLine(roomsDialog.PlayerColor);
+                    bw.Flush();
                 }
+                else
+                {
+                    game.Mycolor = Color.Red;
+                    game.MyBrush = new SolidBrush(game.Mycolor);
+                    game.MyCompBrush = new SolidBrush(Color.Yellow);
+                    bw.WriteLine(roomsDialog.PlayerColor);
+                    bw.Flush();
+                }
+                game.Show();
             }
-            //game.ColumnChanged += SendLastMove;
-            game.ShowDialog();
-            //game.FormClosing += Close_All;
+            game.ColumnChanged += SendLastMove;
+            this.ReadMsgg += new Notify(game.ReadInfo);
+            while (true)
+            {
 
-
+                Msg = await br.ReadLineAsync();
+                game.Dimmed = false;
+                ReadMsgg(Msg);
+            }
         }
         private void Close_All(object sender, EventArgs e)
         {
             this.Close();
         }
-        //public void SendLastMove(object sender, EventData e)
-        //{
-        //    MessageBox.Show("test");
-        //    bw.WriteLine(e.columnPlayed.ToString());
-        //    bw.Flush();
-        //}
+        public void SendLastMove(object sender, EventData e)
+        {
+            bw.WriteLine(e.columnPlayed.ToString());
+            bw.Flush();
+        }
 
 
     }

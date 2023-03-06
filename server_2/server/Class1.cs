@@ -14,22 +14,27 @@ namespace server
         //TcpClient tcpClient;
         public event EventHandler ReadMsg;
         StreamReader br;
-        NetworkStream nstream;
         
         public Client() { }
         public Client(Client client) 
         { 
             this.Name=client.Name;
             this.TClient = client.TClient;
+            this.br=client.br;
+            this.Nstream = client.Nstream;
+            this.bw= client.bw;
+            this.CurrentRoom= client.CurrentRoom;
+            this.Msg = client.Msg;
         }
         public Client(TcpClient tcpClient)
         {
             TClient = tcpClient;
-            nstream = TClient.GetStream();
-            bw = new StreamWriter(nstream);
+            Nstream = TClient.GetStream();
+            bw = new StreamWriter(Nstream);
             bw.Flush();
-            br = new StreamReader(nstream);
+            br = new StreamReader(Nstream);
             ReadInfo(EventArgs.Empty);
+           
         }
         protected virtual async void ReadInfo(EventArgs e)
         {
@@ -47,6 +52,7 @@ namespace server
         public StreamWriter bw { set; get; }
         public TcpClient TClient { get; set; }
         public Room CurrentRoom { set; get; }
+        public NetworkStream Nstream { get; set; }
     }
 }   
 

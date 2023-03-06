@@ -14,7 +14,7 @@ namespace Client_Side
     {
         public BoardSize()
         {
-            InitializeComponent();
+            InitializeComponent();  
         }
         public string Board_size
         {

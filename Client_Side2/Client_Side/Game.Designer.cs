@@ -34,11 +34,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 361);
+            this.ClientSize = new System.Drawing.Size(984, 661);
             this.Name = "Game";
             this.Text = "Game";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Game_MouseClick_1);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Game_MouseClick);
             this.ResumeLayout(false);
 
         }
